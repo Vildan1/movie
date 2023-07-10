@@ -61,7 +61,7 @@ export default function Home() {
               <div className="flex flex-row j w-full mb-2 text-base">
                 <div className="flex mr-2">
                   <AiFillLike size={16} className="mr-1 mt-0.5 text-gray-500" />{" "}
-                  {e.vote_average}
+                  {e.vote_average.toString().replace(".", ",")}
                 </div>
                 <div className="flex">{e.vote_count} Oy</div>
               </div>
