@@ -1,3 +1,6 @@
+"use client";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { AiFillLike } from "react-icons/ai";
 import { BiSolidHomeHeart } from "react-icons/bi";
 import { BsBookmarkStarFill } from "react-icons/bs";
@@ -5,87 +8,87 @@ import { HiStar } from "react-icons/hi";
 import { RiMoneyDollarBoxFill } from "react-icons/ri";
 
 export default function Page({ params }: { params: { id: string } }) {
-  return (
-    <main className="flex min-h-screen flex-col justify-between p-4 bg-[#96c3ec]">
-      <div>
-        <div>Film ID: {params.id}</div>
-        <div className="flex overflow-x-auto snap-proximity snap-x mb-4">
-          <div className="snap-normal snap-center me-2 px-2 bg-gray-500 rounded-full text-white">
-            aksiyonzxss
-          </div>
-          <div className="snap-normal snap-center me-2 px-2 bg-gray-500 rounded-full text-white">
-            aksiyon
-          </div>
-          <div className="snap-normal snap-center me-2 px-2 bg-gray-500 rounded-full text-white">
-            aksiyon
-          </div>
-          <div className="snap-normal snap-center me-2 px-2 bg-gray-500 rounded-full text-white">
-            aksiyon
-          </div>
-          <div className="snap-normal snap-center me-2 px-2 bg-gray-500 rounded-full text-white">
-            aksiyon
-          </div>
-          <div className="snap-normal snap-center me-2 px-2 bg-gray-500 rounded-full text-white">
-            macera
-          </div>
-          <div className="snap-normal snap-center me-2 px-2 bg-gray-500 rounded-full text-white">
-            korku
-          </div>
-        </div>
-        <p className="text-white mb-4"> 1- Star Wars 1. Bölüm Yeni Bir Umut</p>
+	const language = "tr-TR";
+	const [movie, setMovie] = useState();
 
-        <div className="flex mb-2">
-          <div className="col me-2 text-gray-500">
-            <AiFillLike size={35} />
-          </div>
-          <div className="col text-white mt-2"> 3500</div>
-        </div>
-        <div className="flex mb-2">
-          <div className="col me-2 text-gray-500">
-            <RiMoneyDollarBoxFill size={35} />
-          </div>
-          <div className="col text-white mt-2"> 200000000</div>
-        </div>
-        <div className="flex mb-2">
-          <div className="col me-2 text-gray-500">
-            <BsBookmarkStarFill size={35} />
-          </div>
-          <div className="col text-white me-2 mt-2">9,2 puan</div>
-          <div className="col mt-2">
-            <div className="flex space-x">
-              <div>
-                <HiStar className="mt-1 text-white" />
-              </div>
-              <div>
-                <HiStar className="mt-1 text-white" />
-              </div>
-              <div>
-                <HiStar className="mt-1 text-white" />
-              </div>
-              <div>
-                <HiStar className="mt-1 text-white" />
-              </div>
-              <div>
-                <HiStar className="mt-1 text-gray-400" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="flex mb-2">
-          <div className="col me-2 text-gray-500">
-            <BiSolidHomeHeart size={35} />
-          </div>
-          <div className="col text-white mt-2"> populerlik 358000</div>
-        </div>
-        <p className="text-white text-justify mt-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, minus
-          dolor! Consectetur, sit possimus earum ex ad voluptates distinctio
-          sequi, quod est reiciendis illo laboriosam excepturi voluptatum
-          ratione quis? Cupiditate! Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Adipisci consectetur officia perspiciatis aut quis
-          culpa inventore nobis minus.
-        </p>
-      </div>
-    </main>
-  );
+	const fetchMovieDetails = async () => {
+		const api = `https://api.themoviedb.org/3/movie/${params.id}?language=${language}}`;
+		const token =
+			"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MDcyZWM3YmY0ZDIyODlhNzg5NjI0MDFlMTAwYTYzMCIsInN1YiI6IjY0YTZkMGM2MDM5OGFiMDBjYTIwYTM3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8a-78GFoi2BgxJp1jf_-_4hW5M6p5kG2oxNT4TQD4aE";
+		const req = await axios
+			.get(api, {
+				headers: { Authorization: `Bearer ${token}` },
+			})
+			.then((response) => setMovie(response.data))
+			.catch((error) => console.log(error));
+	};
+
+	useEffect(() => {
+		fetchMovieDetails();
+	}, []);
+
+	return (
+		<main className="flex min-h-screen flex-col justify-between p-4 bg-[#96c3ec]">
+			<div>
+				<div>Film ID: {params.id}</div>
+				<div className="flex overflow-x-auto snap-proximity snap-x mb-4">
+					{movie?.genres.map((e, _i) => (
+						<div className="snap-normal snap-center me-2 px-2 bg-gray-500 rounded-full text-white line-clamp-1">
+							{e.name}
+						</div>
+					))}
+				</div>
+				<p className="text-white mb-4"> 1- {movie?.title}</p>
+				<div className="flex mb-2">
+					<div className="col me-2 text-gray-500">
+						<AiFillLike size={35} />
+					</div>
+					<div className="col text-white mt-2">{movie?.vote_count}</div>
+				</div>
+				<div className="flex mb-2">
+					<div className="col me-2 text-gray-500">
+						<RiMoneyDollarBoxFill size={35} />
+					</div>
+					<div className="col text-white mt-2">{movie?.budget}</div>
+				</div>
+				<div className="flex mb-2">
+					<div className="col me-2 text-gray-500">
+						<BsBookmarkStarFill size={35} />
+					</div>
+					<div className="col text-white me-2 mt-2">
+						{movie?.vote_average} puan
+					</div>
+					<div className="col mt-2">
+						<div className="flex space-x">
+							<div>
+								<HiStar className="mt-1 text-white" />
+							</div>
+							<div>
+								<HiStar className="mt-1 text-white" />
+							</div>
+							<div>
+								<HiStar className="mt-1 text-white" />
+							</div>
+							<div>
+								<HiStar className="mt-1 text-white" />
+							</div>
+							<div>
+								<HiStar className="mt-1 text-gray-400" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="flex mb-2">
+					<div className="col me-2 text-gray-500">
+						<BiSolidHomeHeart size={35} />
+					</div>
+					<div className="col text-white mt-2">
+						{" "}
+						populerlik {movie?.popularity}
+					</div>
+				</div>
+				<p className="text-white text-justify mt-4">{movie?.overview}</p>
+			</div>
+		</main>
+	);
 }
