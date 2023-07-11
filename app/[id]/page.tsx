@@ -30,15 +30,15 @@ export default function Page({ params }: { params: { id: string } }) {
 	return (
 		<main className="flex min-h-screen flex-col justify-between p-4 bg-[#96c3ec]">
 			<div>
-				<div>Film ID: {params.id}</div>
-				<div className="flex overflow-x-auto snap-proximity snap-x mb-4">
+				
+				<div className="flex no-scrollbar overflow-x-auto mb-4">
 					{movie?.genres.map((e, _i) => (
-						<div className="snap-normal snap-center me-2 px-2 bg-gray-500 rounded-full text-white line-clamp-1">
+						<div className="whitespace-nowrap px-2 me-2 bg-gray-500 rounded-full text-white">
 							{e.name}
 						</div>
 					))}
 				</div>
-				<p className="text-white mb-4"> 1- {movie?.title}</p>
+				<p className="text-white mb-4"> {movie?.title}</p>
 				<div className="flex mb-2">
 					<div className="col me-2 text-gray-500">
 						<AiFillLike size={35} />
@@ -83,7 +83,6 @@ export default function Page({ params }: { params: { id: string } }) {
 						<BiSolidHomeHeart size={35} />
 					</div>
 					<div className="col text-white mt-2">
-						{" "}
 						populerlik {movie?.popularity}
 					</div>
 				</div>
