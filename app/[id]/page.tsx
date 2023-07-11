@@ -9,6 +9,7 @@ import { RiMoneyDollarBoxFill } from "react-icons/ri";
 
 export default function Page({ params }: { params: { id: string } }) {
 	const language = "tr-TR";
+	const colorFrom = 255;
 	const [movie, setMovie] = useState();
 
 	const fetchMovieDetails = async () => {
@@ -30,10 +31,12 @@ export default function Page({ params }: { params: { id: string } }) {
 	return (
 		<main className="flex min-h-screen flex-col justify-between p-4 bg-[#96c3ec]">
 			<div>
-				
 				<div className="flex no-scrollbar overflow-x-auto mb-4">
 					{movie?.genres.map((e, _i) => (
-						<div className="whitespace-nowrap px-2 me-2 bg-gray-500 rounded-full text-white">
+						<div
+							key={_i}
+							className="whitespace-nowrap px-2 me-2 bg-gray-500 rounded-full text-white"
+						>
 							{e.name}
 						</div>
 					))}
@@ -60,20 +63,27 @@ export default function Page({ params }: { params: { id: string } }) {
 					</div>
 					<div className="col mt-2">
 						<div className="flex space-x">
+							{Array.from(
+								{
+									length: (movie?.vote_average - (movie?.vote_average % 2)) / 2,
+								},
+								() => Math.floor(Math.random() * 2)
+							).map((e, _i) => (
+								<div key={_i}>
+									<HiStar className="mt-1" color="#fff" />
+								</div>
+							))}
 							<div>
-								<HiStar className="mt-1 text-white" />
-							</div>
-							<div>
-								<HiStar className="mt-1 text-white" />
-							</div>
-							<div>
-								<HiStar className="mt-1 text-white" />
-							</div>
-							<div>
-								<HiStar className="mt-1 text-white" />
-							</div>
-							<div>
-								<HiStar className="mt-1 text-gray-400" />
+								<HiStar
+									className={`mt-1`}
+									color={`rgb(${parseInt(
+										colorFrom * ((movie?.vote_average % 2) / 2)
+									)}, ${parseInt(
+										colorFrom * ((movie?.vote_average % 2) / 2)
+									)}, ${parseInt(
+										colorFrom * ((movie?.vote_average % 2) / 2)
+									)})`}
+								/>
 							</div>
 						</div>
 					</div>
