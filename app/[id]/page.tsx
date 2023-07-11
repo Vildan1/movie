@@ -30,7 +30,7 @@ export default function Page({ params }: { params: { id: string } }) {
   }, []);
 
   return (
-    <main className="min-h-screen justify-between bg-[#96c3ec] mt-[50px]">
+    <main className="min-h-screen bg-[#96c3ec] mt-[50px]">
       <div>
         <Image
           alt="movieBanner"
@@ -70,7 +70,7 @@ export default function Page({ params }: { params: { id: string } }) {
               <BsBookmarkStarFill size={35} />
             </div>
             <div className="col text-white me-2 mt-2">
-              {movie?.vote_average.toString().replace(".", ",")}puan
+              {movie?.vote_average.toFixed(1).toString().replace(".", ",")} puan
             </div>
             <div className="col mt-2">
               <div className="flex space-x">
@@ -115,7 +115,7 @@ export default function Page({ params }: { params: { id: string } }) {
               <BiSolidHomeHeart size={35} />
             </div>
             <div className="col text-white mt-2">
-              populerlik {movie?.popularity}
+              populerlik {parseInt(movie?.popularity)}
             </div>
           </div>
           <p className="text-white text-justify mt-4">{movie?.overview}</p>
