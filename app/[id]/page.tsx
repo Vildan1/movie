@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AiFillLike } from "react-icons/ai";
 import { BiSolidHomeHeart } from "react-icons/bi";
@@ -8,26 +9,27 @@ import { HiStar } from "react-icons/hi";
 import { RiMoneyDollarBoxFill } from "react-icons/ri";
 
 export default function Page({ params }: { params: { id: string } }) {
+
 	const language = "tr-TR";
 	const colorFrom = 255;
 	const [movie, setMovie] = useState();
 
-	const fetchMovieDetails = async () => {
-		const api = `https://api.themoviedb.org/3/movie/${params.id}?language=${language}}`;
-		const token =
-			"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MDcyZWM3YmY0ZDIyODlhNzg5NjI0MDFlMTAwYTYzMCIsInN1YiI6IjY0YTZkMGM2MDM5OGFiMDBjYTIwYTM3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8a-78GFoi2BgxJp1jf_-_4hW5M6p5kG2oxNT4TQD4aE";
-		const req = await axios
-			.get(api, {
-				headers: { Authorization: `Bearer ${token}` },
-			})
-			.then((response) => setMovie(response.data))
-			.catch((error) => console.log(error));
-	};
+  const fetchMovieDetails = async () => {
+    const api = `https://api.themoviedb.org/3/movie/${params.id}?language=${language}}`;
+    const token =
+      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MDcyZWM3YmY0ZDIyODlhNzg5NjI0MDFlMTAwYTYzMCIsInN1YiI6IjY0YTZkMGM2MDM5OGFiMDBjYTIwYTM3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8a-78GFoi2BgxJp1jf_-_4hW5M6p5kG2oxNT4TQD4aE";
+    const req = await axios
+      .get(api, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => setMovie(response.data))
+      .catch((error) => console.log(error));
+  };
 
-	useEffect(() => {
-		fetchMovieDetails();
-	}, []);
-
+  useEffect(() => {
+    fetchMovieDetails();
+  }, []);
+  
 	return (
 		<main className="flex min-h-screen flex-col justify-between p-4 bg-[#96c3ec]">
 			<div>
