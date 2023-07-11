@@ -29,6 +29,22 @@ export default function Page({ params }: { params: { id: string } }) {
     fetchMovieDetails();
   }, []);
 
+  const moneyFormat = (money: number|undefined): string => {
+    if (money === 0 || money === undefined) {
+      return '0'
+    }
+
+    let resultAsMillion = Math.floor(money / 1000000)
+
+    if (resultAsMillion > 0) {
+      return `${resultAsMillion} M`
+    }
+
+    let resultAsTousand = Math.floor(money / 1000)
+
+    return `${resultAsTousand} K`
+  }
+
   return (
     <main className="min-h-screen bg-[#96c3ec] mt-[50px]">
       <div>
@@ -63,7 +79,7 @@ export default function Page({ params }: { params: { id: string } }) {
             <div className="col me-2 text-gray-500">
               <RiMoneyDollarBoxFill size={35} />
             </div>
-            <div className="col text-white mt-2">{movie?.budget}</div>
+            <div className="col text-white mt-2">{moneyFormat(movie?.budget)}</div>
           </div>
           <div className="flex mb-2">
             <div className="col me-2 text-gray-500">
