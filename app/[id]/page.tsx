@@ -85,6 +85,16 @@ export default function Page({ params }: { params: { id: string } }) {
 									)})`}
 								/>
 							</div>
+							{Array.from(
+								{
+									length: Math.trunc((10 - movie?.vote_average) / 2),
+								},
+								() => Math.floor(Math.random() * 2)
+							).map((e, _i) => (
+								<div key={_i}>
+									<HiStar className="mt-1" color="#000" />
+								</div>
+							))}
 						</div>
 					</div>
 				</div>
