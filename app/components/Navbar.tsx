@@ -20,7 +20,7 @@ const Navbar = () => {
           <div>
             <div className=" mx-auto ">
               <div
-                className="flex items-center justify-startß h-16 text-blue-700 "
+                className="flex items-center justify-startß h-[50px] text-blue-700 "
                 onClick={toggleScreen}
               >
                 <AiOutlineLeft size={30}> </AiOutlineLeft>
@@ -35,7 +35,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div className=" mx-auto ">
-            <div className="flex items-center justify-center h-16">
+            <div className="flex items-center justify-center h-[50px] ">
               <div className="flex items-center">
                 <div className="">
                   <div className=" flex items-center ">

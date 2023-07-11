@@ -30,7 +30,7 @@ export default function Page({ params }: { params: { id: string } }) {
   }, []);
 
   return (
-    <main className="min-h-screen justify-between bg-[#96c3ec]">
+    <main className="flex min-h-screen flex-col justify-between p-4 bg-[#96c3ec] mt-[50px]">
       <div>
         <Image
           alt="movieBanner"
@@ -70,7 +70,7 @@ export default function Page({ params }: { params: { id: string } }) {
               <BsBookmarkStarFill size={35} />
             </div>
             <div className="col text-white me-2 mt-2">
-              {movie?.vote_average} puan
+              {movie?.vote_average.toString().replace(".", ",")}puan
             </div>
             <div className="col mt-2">
               <div className="flex space-x">
