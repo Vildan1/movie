@@ -30,7 +30,7 @@ export default function Page({ params }: { params: { id: string } }) {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col justify-between p-4 bg-[#96c3ec] mt-[50px]">
+    <main className="min-h-screen justify-between bg-[#96c3ec] mt-[50px]">
       <div>
         <Image
           alt="movieBanner"
