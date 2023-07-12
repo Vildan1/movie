@@ -2,7 +2,12 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
-
+interface Movie {
+  id: number;
+  title: string;
+  vote_average: number;
+  vote_count: number;
+}
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
