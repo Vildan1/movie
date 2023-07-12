@@ -2,7 +2,9 @@
 "use client";
 import axios from "axios";
 import Image from "next/image";
+
 import { useEffect, useRef, useState } from "react";
+
 import { AiFillLike } from "react-icons/ai";
 import { BiSolidHomeHeart } from "react-icons/bi";
 import { BsBookmarkStarFill } from "react-icons/bs";
@@ -11,6 +13,7 @@ import { RiMoneyDollarBoxFill } from "react-icons/ri";
 import Navbar from "../components/Navbar";
 
 interface Movie {
+  
 	title: string;
 	backdrop_path: string;
 	genres: { name: string }[];
@@ -80,10 +83,12 @@ export default function Page({ params }: PageProps) {
 			return `${resultAsMillion} M`;
 		}
 
+
 		let resultAsTousand = Math.floor(money / 1000);
 
 		return `${resultAsTousand} K`;
 	};
+
 
 	return (
 		<>
