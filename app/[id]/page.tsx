@@ -13,7 +13,6 @@ import { RiMoneyDollarBoxFill } from "react-icons/ri";
 import Navbar from "../components/Navbar";
 
 interface Movie {
-  
 	title: string;
 	backdrop_path: string;
 	genres: { name: string }[];
@@ -83,12 +82,10 @@ export default function Page({ params }: PageProps) {
 			return `${resultAsMillion} M`;
 		}
 
-
 		let resultAsTousand = Math.floor(money / 1000);
 
 		return `${resultAsTousand} K`;
 	};
-
 
 	return (
 		<>
@@ -97,7 +94,7 @@ export default function Page({ params }: PageProps) {
 				title={movie?.title}
 				isVisible={isTextVisible}
 			/>
-			<main className="justify-between bg-[#96c3ec] h-auto">
+			<main className="bg-[#96c3ec] h-auto min-h-screen">
 				<div>
 					{movie?.backdrop_path && (
 						<Image
@@ -194,38 +191,58 @@ export default function Page({ params }: PageProps) {
 							</div>
 						</div>
 						<p className="text-white text-justify mt-4">{movie?.overview}</p>
-						<Image
-							alt="movieBanner"
-							width={0}
-							height={0}
-							sizes="100vw"
-							src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
-							className="w-full h-auto"
-						/>
-						<Image
-							alt="movieBanner"
-							width={0}
-							height={0}
-							sizes="100vw"
-							src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
-							className="w-full h-auto"
-						/>
-						<Image
-							alt="movieBanner"
-							width={0}
-							height={0}
-							sizes="100vw"
-							src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
-							className="w-full h-auto"
-						/>
-						<Image
-							alt="movieBanner"
-							width={0}
-							height={0}
-							sizes="100vw"
-							src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
-							className="w-full h-auto"
-						/>
+						{movie?.id == "569094" ? (
+							<>
+								<Image
+									alt="movieBanner"
+									width={0}
+									height={0}
+									sizes="100vw"
+									src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+									className="w-full h-auto"
+								/>
+								<Image
+									alt="movieBanner"
+									width={0}
+									height={0}
+									sizes="100vw"
+									src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+									className="w-full h-auto"
+								/>
+								<Image
+									alt="movieBanner"
+									width={0}
+									height={0}
+									sizes="100vw"
+									src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+									className="w-full h-auto"
+								/>
+								<Image
+									alt="movieBanner"
+									width={0}
+									height={0}
+									sizes="100vw"
+									src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+									className="w-full h-auto"
+								/>
+								<Image
+									alt="movieBanner"
+									width={0}
+									height={0}
+									sizes="100vw"
+									src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+									className="w-full h-auto"
+								/>
+								<Image
+									alt="movieBanner"
+									width={0}
+									height={0}
+									sizes="100vw"
+									src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
+									className="w-full h-auto"
+								/>
+							</>
+						) : null}
 					</div>
 				</div>
 			</main>

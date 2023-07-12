@@ -50,7 +50,7 @@ export default function Home() {
 	return (
 		<>
 			<Navbar screen={"home"} title={"MOVIEPARK"} isVisible={true} />
-			<main className="bg-[#96c3ec] px-8 pt-2 relative">
+			<main className="justify-between bg-[#96c3ec] px-8 pt-2  h-auto min-h-screen">
 				<div className="flex text-white justify-center text-base font-semibold">
 					En Popüler İlk 10 Film Listesi
 				</div>
