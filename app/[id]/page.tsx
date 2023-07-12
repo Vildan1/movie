@@ -29,6 +29,22 @@ export default function Page({ params }: { params: { id: string } }) {
     fetchMovieDetails();
   }, []);
 
+  const moneyFormat = (money: number|undefined): string => {
+    if (money === 0 || money === undefined) {
+      return '0'
+    }
+
+    let resultAsMillion = Math.floor(money / 1000000)
+
+    if (resultAsMillion > 0) {
+      return `${resultAsMillion} M`
+    }
+
+    let resultAsTousand = Math.floor(money / 1000)
+
+    return `${resultAsTousand} K`
+  }
+
   return (
     <main className="min-h-screen bg-[#96c3ec] mt-[50px]">
       <div>
@@ -63,14 +79,14 @@ export default function Page({ params }: { params: { id: string } }) {
             <div className="col me-2 text-gray-500">
               <RiMoneyDollarBoxFill size={35} />
             </div>
-            <div className="col text-white mt-2">{movie?.budget}</div>
+            <div className="col text-white mt-2">{moneyFormat(movie?.budget)}</div>
           </div>
           <div className="flex mb-2">
             <div className="col me-2 text-gray-500">
               <BsBookmarkStarFill size={35} />
             </div>
             <div className="col text-white me-2 mt-2">
-              {movie?.vote_average.toString().replace(".", ",")}puan
+              {movie?.vote_average.toFixed(1).toString().replace(".", ",")} puan
             </div>
             <div className="col mt-2">
               <div className="flex space-x">
@@ -115,7 +131,7 @@ export default function Page({ params }: { params: { id: string } }) {
               <BiSolidHomeHeart size={35} />
             </div>
             <div className="col text-white mt-2">
-              populerlik {movie?.popularity}
+              populerlik {parseInt(movie?.popularity)}
             </div>
           </div>
           <p className="text-white text-justify mt-4">{movie?.overview}</p>
