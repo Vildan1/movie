@@ -17,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ screen, title, isVisible }) => {
 						<Link href={"/"}>
 							<AiOutlineLeft size={30}> </AiOutlineLeft>
 						</Link>
-						{!isVisible ? <p>{title}</p> : null}
+						{!isVisible ? <p className="line-clamp-1">{title}</p> : null}
 					</div>
 				</div>
 			) : (
